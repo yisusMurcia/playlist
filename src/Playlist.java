@@ -2,20 +2,13 @@ import java.util.ArrayList;
 
 public class Playlist {
     private String name;
-    private ArrayList<Song> playlistSongs;
+    private final ArrayList<Song> playlistSongs;
 
-    public Playlist(String name) {
-        this.name = name;
-        playlistSongs = new ArrayList<Song>();
-    }
     public Playlist(){
         this.name = "My playlist";
-        playlistSongs = new ArrayList<Song>();
+        playlistSongs = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -27,7 +20,7 @@ public class Playlist {
         for (Song song : playlistSongs){
             song.display();
         }
-        if(playlistSongs.size() != 0) { //Show the separetor only if there is one song
+        if(!playlistSongs.isEmpty()) { //Show the separator only if there is one song
             System.out.println("\t\t------");
         }
     }
