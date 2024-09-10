@@ -50,7 +50,7 @@ public class Song {
     }
 
     public void display(){
-        System.out.println("Song: " + name + "by: " + artist);
+        System.out.println("Song: " + name + " by: " + artist);
         if(!genre.equalsIgnoreCase("unknown")){
             System.out.println("\tGenre: " + genre + "\n\tCreated in" + year);
         }

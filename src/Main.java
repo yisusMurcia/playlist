@@ -6,17 +6,17 @@ public class Main {
         int option;
         Playlist myPlaylist = new Playlist();
         Scanner scan = new Scanner(System.in);
-        System.out.println("Biemvenido, crea tu playlist");
+        System.out.println("Welcome, now create your playlist");
 
         do {
             System.out.println(
-                    "Opción 1: Añadir canción\n" +
-                    "Opción 2: Editar canción\n" +
-                    "Opción 3: Eliminar canción\n" +
-                    "Opción 4: Sorprendeme\n" +
-                    "Opción 5: Ver canciones\n" +
-                    "Opción 4: Cambiar nombre a la playlist\n" +
-                    "\tOpción 0: Salir"
+                    "Option 1: add song\n" +
+                    "Option 2: edit song\n" +
+                    "Option 3: delete song\n" +
+                    "Option 4: sorprise me\n" +
+                    "Option 5: display songs\n" +
+                    "Option 6: change playlist´s name\n" +
+                    "\tOption 0: exit"
             );
             option = scan.nextInt();
             switch (option){
@@ -24,15 +24,27 @@ public class Main {
                     addSong(myPlaylist);
                     break;
                 case 2:
-
+                    editSong(selectSong(myPlaylist));
+                    break;
+                case 3:
+                    myPlaylist.removeSong(selectSong(myPlaylist));
+                    break;
+                case 4:
+                    addPredeterminatedSongs(myPlaylist);
+                    break;
                 case 5:
                     myPlaylist.displaySongs();
-                default :
+                    break;
+                case 6:
+                    renamePlaylist(myPlaylist);
+                    break;
+                default:
                     System.out.println("Algo salió mal, intenta nuevamente");
                     break;
             }
 
         }while(option != 0);
+        System.out.println("Exit... Thanks for use the program");
     }
 
     private static void addSong(Playlist playlist){
@@ -69,15 +81,50 @@ public class Main {
                 song.display();
 
                 System.out.println("Select an option:\n" +
-                    "Option 1: Change name\n" +
-                    "Option 2: Change artist\n" +
-                    "Option 3: Change/set genre\n" +
-                    "Option 4: Change/set year\n" +
-                    "\tOption 0: Salir");
+                    "Option 1: change name\n" +
+                    "Option 2: change artist\n" +
+                    "Option 3: change/set genre\n" +
+                    "Option 4: change/set year\n" +
+                    "\tOption 0: Exit");
                 option = scan.nextInt();
+                switch (option){
+                    case 1 :
+                        System.out.println("Enter the new name");
+                        song.setName(scan.nextLine());
+                        break;
+                    case 2:
+                        System.out.println("Enter the artist");
+                        song.setArtist(scan.nextLine());
+                        break;
+                    case 3:
+                        System.out.println("Enter genre");
+                        song.setGenre(scan.nextLine());
+                        break;
+                    case 4:
+                        System.out.println("Enter year");
+                        song.setYear(scan.nextInt());
+                        break;
+                    default :
+                        System.out.println("Something goes wrong, try again");
+                        break;
+                }
             }while(option != 0);
         }else{
             System.out.println("Not song find");
         }
+    }
+
+    private static void addPredeterminatedSongs(Playlist playlist){
+        playlist.addSong(new Song("Best of me", "Neffex"));
+        playlist.addSong(new Song("The search", "NF"));
+        playlist.addSong(new Song("Born for this", "The score"));
+        playlist.addSong(new Song("When I die", "Kyle Hume"));
+        playlist.addSong(new Song("Trauma", "BoyWithUKE"));
+    }
+
+    private static void renamePlaylist(Playlist playlist){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the new playlist´s name");
+        playlist.setName(scan.nextLine());
     }
 }

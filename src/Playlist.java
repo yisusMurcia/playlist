@@ -23,12 +23,13 @@ public class Playlist {
 
     public void displaySongs(){
         int numOfSongs = playlistSongs.size();
-        System.out.println(name + "has " + numOfSongs + "Songs:");
+        System.out.println(name + " has " + numOfSongs + "Songs:");
         for (Song song : playlistSongs){
             song.display();
         }
-
-        System.out.println("\t\t------");
+        if(playlistSongs.size() != 0) { //Show the separetor only if there is one song
+            System.out.println("\t\t------");
+        }
     }
 
     public boolean addSong(Song song){
@@ -44,7 +45,7 @@ public class Playlist {
     }
 
     public void removeSong(Song song){
-        if(playlistSongs.remove(song)){
+        if(song != null && playlistSongs.remove(song)){
             System.out.println("The song has been removed");
         }else{
             System.out.println("Something goes wrong");
