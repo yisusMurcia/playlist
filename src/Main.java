@@ -10,13 +10,14 @@ public class Main {
 
         do {
             System.out.println(
-                    "Option 1: add song\n" +
-                    "Option 2: edit song\n" +
-                    "Option 3: delete song\n" +
-                    "Option 4: surprise me\n" +
-                    "Option 5: display songs\n" +
-                    "Option 6: change playlist´s name\n" +
-                    "\tOption 0: exit"
+                    """
+                            Option 1: add song
+                            Option 2: edit song
+                            Option 3: delete song
+                            Option 4: surprise me
+                            Option 5: display songs
+                            Option 6: change playlist´s name
+                            \tOption 0: exit"""
             );
             option = scan.nextInt();
             switch (option){
@@ -30,7 +31,7 @@ public class Main {
                     myPlaylist.removeSong(selectSong(myPlaylist, scan));
                     break;
                 case 4:
-                    addPredeterminatedSongs(myPlaylist);
+                    addPredetermineSongs(myPlaylist);
                     break;
                 case 5:
                     myPlaylist.displaySongs();
@@ -39,7 +40,7 @@ public class Main {
                     renamePlaylist(myPlaylist, scan);
                     break;
                 default:
-                    System.out.println("Algo salió mal, intenta nuevamente");
+                    System.out.println("Something goes wrong, try again");
                     break;
             }
 
@@ -79,12 +80,13 @@ public class Main {
                 System.out.println("Your song : ");
                 song.display();
 
-                System.out.println("Select an option:\n" +
-                    "Option 1: change name\n" +
-                    "Option 2: change artist\n" +
-                    "Option 3: change/set genre\n" +
-                    "Option 4: change/set year\n" +
-                    "\tOption 0: Exit");
+                System.out.println("""
+                        Select an option:
+                        Option 1: change name
+                        Option 2: change artist
+                        Option 3: change/set genre
+                        Option 4: change/set year
+                        \tOption 0: Exit""");
                 option = scan.nextInt();
                 switch (option){
                     case 1 :
@@ -133,7 +135,7 @@ public class Main {
         song.setYear(scan.nextInt());
     }
 
-    private static void addPredeterminatedSongs(Playlist playlist){
+    private static void addPredetermineSongs(Playlist playlist){
         playlist.addSong(new Song("Best of me", "Neffex"));
         playlist.addSong(new Song("The search", "NF"));
         playlist.addSong(new Song("Born for this", "The score"));

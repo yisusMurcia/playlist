@@ -6,11 +6,11 @@ public class Playlist {
 
     public Playlist(String name) {
         this.name = name;
-        playlistSongs = new ArrayList<Song>();
+        playlistSongs = new ArrayList<>();
     }
     public Playlist(){
         this.name = "My playlist";
-        playlistSongs = new ArrayList<Song>();
+        playlistSongs = new ArrayList<>();
     }
 
     public String getName() {
@@ -27,7 +27,7 @@ public class Playlist {
         for (Song song : playlistSongs){
             song.display();
         }
-        if(playlistSongs.size() != 0) { //Show the separetor only if there is one song
+        if(!playlistSongs.isEmpty()) { //Show the separator only if there is one song
             System.out.println("\t\t------");
         }
     }
