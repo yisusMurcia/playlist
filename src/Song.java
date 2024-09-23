@@ -52,7 +52,10 @@ public class Song {
     public void display(){
         System.out.println("Song: " + name + " by: " + artist);
         if(!genre.equalsIgnoreCase("unknown")){
-            System.out.println("\tGenre: " + genre + "\n\tCreated in" + year);
+            System.out.println("\tGenre: " + genre);
+        }
+        if(year > 0){
+            System.out.println("\tCreaten in: "+ year);
         }
     }
 }

@@ -13,7 +13,7 @@ public class Main {
                     "Option 1: add song\n" +
                     "Option 2: edit song\n" +
                     "Option 3: delete song\n" +
-                    "Option 4: sorprise me\n" +
+                    "Option 4: surprise me\n" +
                     "Option 5: display songs\n" +
                     "Option 6: change playlist´s name\n" +
                     "\tOption 0: exit"
@@ -21,13 +21,13 @@ public class Main {
             option = scan.nextInt();
             switch (option){
                 case 1:
-                    addSong(myPlaylist);
+                    addSong(myPlaylist, scan);
                     break;
                 case 2:
-                    editSong(selectSong(myPlaylist));
+                    editSong(selectSong(myPlaylist, scan), scan);
                     break;
                 case 3:
-                    myPlaylist.removeSong(selectSong(myPlaylist));
+                    myPlaylist.removeSong(selectSong(myPlaylist, scan));
                     break;
                 case 4:
                     addPredeterminatedSongs(myPlaylist);
@@ -36,7 +36,7 @@ public class Main {
                     myPlaylist.displaySongs();
                     break;
                 case 6:
-                    renamePlaylist(myPlaylist);
+                    renamePlaylist(myPlaylist, scan);
                     break;
                 default:
                     System.out.println("Algo salió mal, intenta nuevamente");
@@ -45,10 +45,10 @@ public class Main {
 
         }while(option != 0);
         System.out.println("Exit... Thanks for use the program");
+        scan.close();
     }
 
-    private static void addSong(Playlist playlist){
-        Scanner scan = new Scanner(System.in);
+    private static void addSong(Playlist playlist, Scanner scan){
         String name;
         String artist;
 
@@ -63,16 +63,15 @@ public class Main {
         }
     }
 
-    private static Song selectSong(Playlist playlist){
-        Scanner scan = new Scanner(System.in);
+    private static Song selectSong(Playlist playlist, Scanner scan){
 
         playlist.displaySongs();
         System.out.println("Enter the name of the song");
+        scan.nextLine();
         return playlist.getSong(scan.nextLine());
     }
 
-    private  static void editSong(Song song){
-        Scanner scan = new Scanner(System.in);
+    private  static void editSong(Song song, Scanner scan){
         int option;
 
         if (song != null){
@@ -89,20 +88,16 @@ public class Main {
                 option = scan.nextInt();
                 switch (option){
                     case 1 :
-                        System.out.println("Enter the new name");
-                        song.setName(scan.nextLine());
+                        setSongName(song, scan);
                         break;
                     case 2:
-                        System.out.println("Enter the artist");
-                        song.setArtist(scan.nextLine());
+                        setSongArtist(song, scan);
                         break;
                     case 3:
-                        System.out.println("Enter genre");
-                        song.setGenre(scan.nextLine());
+                        setSongGenre(song, scan);
                         break;
                     case 4:
-                        System.out.println("Enter year");
-                        song.setYear(scan.nextInt());
+                        setSongYear(song, scan);
                         break;
                     default :
                         System.out.println("Something goes wrong, try again");
@@ -114,6 +109,30 @@ public class Main {
         }
     }
 
+    private static void setSongName(Song song, Scanner scan){
+        scan.nextLine();
+        System.out.println("Enter the new song´s name:");
+        song.setName(scan.nextLine());
+    }
+
+    private static void setSongArtist(Song song, Scanner scan){
+        scan.nextLine();
+        System.out.println("Enter the new song´s artist:");
+        song.setArtist(scan.nextLine());
+    }
+
+    private static void setSongGenre(Song song, Scanner scan){
+        scan.nextLine();
+        System.out.println("Enter the new song´s genre:");
+        song.setGenre(scan.nextLine());
+    }
+
+    private static void setSongYear(Song song, Scanner scan){
+        scan.nextLine();
+        System.out.println("Enter the new song´s year:");
+        song.setYear(scan.nextInt());
+    }
+
     private static void addPredeterminatedSongs(Playlist playlist){
         playlist.addSong(new Song("Best of me", "Neffex"));
         playlist.addSong(new Song("The search", "NF"));
@@ -122,8 +141,7 @@ public class Main {
         playlist.addSong(new Song("Trauma", "BoyWithUKE"));
     }
 
-    private static void renamePlaylist(Playlist playlist){
-        Scanner scan = new Scanner(System.in);
+    private static void renamePlaylist(Playlist playlist, Scanner scan){
         System.out.println("Enter the new playlist´s name");
         playlist.setName(scan.nextLine());
     }
