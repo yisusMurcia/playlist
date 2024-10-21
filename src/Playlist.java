@@ -23,7 +23,7 @@ public class Playlist {
 
     public void displaySongs(){
         int numOfSongs = playlistSongs.size();
-        System.out.println(name + " has " + numOfSongs + "Songs:");
+        System.out.println(name + " has " + numOfSongs + " songs:");
         for (Song song : playlistSongs){
             song.display();
         }
