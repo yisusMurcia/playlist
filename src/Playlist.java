@@ -2,19 +2,11 @@ import java.util.ArrayList;
 
 public class Playlist {
     private String name;
-    private ArrayList<Song> playlistSongs;
+    private final ArrayList<Song> playlistSongs;
 
-    public Playlist(String name) {
-        this.name = name;
-        playlistSongs = new ArrayList<>();
-    }
     public Playlist(){
         this.name = "My playlist";
         playlistSongs = new ArrayList<>();
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
